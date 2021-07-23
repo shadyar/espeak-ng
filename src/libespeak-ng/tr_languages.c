@@ -31,6 +31,7 @@
 #include <espeak-ng/speak_lib.h>
 #include <espeak-ng/encoding.h>
 
+#include "setlengths.h"          // for SetLengthMods
 #include "translate.h"           // for Translator, LANGUAGE_OPTIONS, L, NUM...
 
 // start of unicode pages for character sets
@@ -295,6 +296,7 @@ static Translator *NewTranslator(void)
 	tr->langopts.replace_chars = NULL;
 	tr->langopts.alt_alphabet_lang = L('e', 'n');
 	tr->langopts.roman_suffix = utf8_null;
+	tr->langopts.lowercase_sentence = false;
 
 	SetLengthMods(tr, 201);
 
@@ -761,8 +763,7 @@ Translator *SelectTranslator(const char *name)
 		static const short stress_lengths_eu[8] = { 200, 200,  200, 200,  0, 0,  210, 230 }; // very weak stress
 		static const unsigned char stress_amps_eu[8] = { 16, 16, 18, 18, 18, 18, 18, 18 };
 		SetupTranslator(tr, stress_lengths_eu, stress_amps_eu);
-		tr->langopts.stress_rule = STRESSPOSN_2L; // ?? second syllable, but not on a word-final vowel
-		tr->langopts.stress_flags = S_FINAL_VOWEL_UNSTRESSED;
+		tr->langopts.stress_flags = S_FINAL_VOWEL_UNSTRESSED | S_MID_DIM;
 		tr->langopts.param[LOPT_SUFFIX] = 1;
 		tr->langopts.numbers = NUM_SINGLE_STRESS | NUM_DECIMAL_COMMA | NUM_HUNDRED_AND | NUM_OMIT_1_HUNDRED | NUM_OMIT_1_THOUSAND | NUM_VIGESIMAL;
 	}
@@ -810,7 +811,7 @@ Translator *SelectTranslator(const char *name)
 		tr->langopts.param[LOPT_IT_DOUBLING] = 1;
 		tr->langopts.long_stop = 130;
 
-		tr->langopts.numbers = NUM_DECIMAL_COMMA + NUM_ALLOW_SPACE;
+		tr->langopts.numbers = NUM_DECIMAL_COMMA | NUM_ALLOW_SPACE | NUM_DFRACTION_2 | NUM_ORDINAL_DOT;
 		SetLetterVowel(tr, 'y');
 		tr->langopts.spelling_stress = 1;
 		tr->langopts.intonation_group = 3; // less intonation, don't raise pitch at comma
@@ -868,7 +869,7 @@ Translator *SelectTranslator(const char *name)
 		tr->encoding = ESPEAKNG_ENCODING_ISCII;
 		tr->langopts.length_mods0 = tr->langopts.length_mods; // don't lengthen vowels in the last syllable
 
-		tr->langopts.stress_rule = 6; // stress on last heaviest syllable, excluding final syllable
+		tr->langopts.stress_rule = STRESSPOSN_1RH; // stress on last heaviest syllable, excluding final syllable
 		tr->langopts.stress_flags =  S_MID_DIM | S_FINAL_DIM; // use 'diminished' for unstressed final syllable
 		tr->langopts.numbers = NUM_SWAP_TENS;
 		tr->langopts.break_numbers = BREAK_LAKH_HI;
@@ -1103,7 +1104,7 @@ Translator *SelectTranslator(const char *name)
 
 		SetupTranslator(tr, stress_lengths_tr, stress_amps_tr);
 
-		tr->langopts.stress_rule = 7; // stress on the last syllable, before any explicitly unstressed syllable
+		tr->langopts.stress_rule = STRESSPOSN_1RU; // stress on the last syllable, before any explicitly unstressed syllable
 		tr->langopts.stress_flags = S_NO_AUTO_2 + S_NO_EOC_LENGTHEN; // no automatic secondary stress, don't lengthen at end-of-clause
 		tr->langopts.lengthen_tonic = 0;
 		tr->langopts.param[LOPT_SUFFIX] = 1;
@@ -1116,7 +1117,7 @@ Translator *SelectTranslator(const char *name)
 	case L('k', 'l'): // Greenlandic
 	{
 		SetupTranslator(tr, stress_lengths_equal, stress_amps_equal);
-		tr->langopts.stress_rule = 12;
+		tr->langopts.stress_rule = STRESSPOSN_GREENLANDIC;
 		tr->langopts.stress_flags = S_NO_AUTO_2;
 		tr->langopts.numbers = NUM_DECIMAL_COMMA | NUM_SWAP_TENS | NUM_HUNDRED_AND | NUM_OMIT_1_HUNDRED | NUM_ORDINAL_DOT | NUM_1900 | NUM_ROMAN | NUM_ROMAN_CAPITALS | NUM_ROMAN_ORDINAL;
 	}
@@ -1133,7 +1134,7 @@ Translator *SelectTranslator(const char *name)
 		SetLetterBits(tr, LETTERGP_Y, ko_ivowels);
 		SetLetterBits(tr, LETTERGP_G, (const char *)ko_voiced);
 
-		tr->langopts.stress_rule = 8; // ?? 1st syllable if it is heavy, else 2nd syllable
+		tr->langopts.stress_rule = STRESSPOSN_2LLH; // ?? 1st syllable if it is heavy, else 2nd syllable
 		tr->langopts.param[LOPT_UNPRONOUNCABLE] = 1; // disable check for unpronouncable words
 		tr->langopts.numbers = NUM_OMIT_1_HUNDRED;
 		tr->langopts.numbers2 = NUM2_MYRIADS;
@@ -1149,7 +1150,7 @@ Translator *SelectTranslator(const char *name)
 		SetupTranslator(tr, stress_lengths_ku, stress_amps_ku);
 		tr->encoding = ESPEAKNG_ENCODING_ISO_8859_9;
 
-		tr->langopts.stress_rule = 7; // stress on the last syllable, before any explicitly unstressed syllable
+		tr->langopts.stress_rule = STRESSPOSN_1RU; // stress on the last syllable, before any explicitly unstressed syllable
 
 		tr->langopts.numbers = NUM_HUNDRED_AND | NUM_AND_UNITS | NUM_OMIT_1_HUNDRED | NUM_AND_HUNDRED;
 		tr->langopts.max_initial_consonants = 2;
@@ -1244,7 +1245,7 @@ Translator *SelectTranslator(const char *name)
 		memcpy(tr->stress_lengths, stress_lengths_nl, sizeof(tr->stress_lengths));
 	}
 		break;
-	case L('n', 'o'): // Norwegian
+	case L('n', 'b'): // Norwegian
 	{
 		static const short stress_lengths_no[8] = { 160, 140, 200, 200, 0, 0, 220, 230 };
 
@@ -1399,6 +1400,26 @@ Translator *SelectTranslator(const char *name)
 		tr->langopts.numbers2 = NUM2_THOUSANDS_VAR4;
 		tr->langopts.thousands_sep = ' '; // don't allow dot as thousands separator
 		break;
+		
+	case L3('s', 'm', 'j'): // Lule Saami
+	{
+		static const unsigned char stress_amps_fi[8] = { 18, 16, 22, 22, 20, 22, 22, 22 };
+		static const short stress_lengths_fi[8] = { 150, 180, 200, 200, 0, 0, 210, 250 };
+
+		SetupTranslator(tr, stress_lengths_fi, stress_amps_fi);
+
+		tr->langopts.stress_rule = STRESSPOSN_1L;
+		tr->langopts.stress_flags = S_FINAL_DIM_ONLY | S_FINAL_NO_2 | S_2_TO_HEAVY; // move secondary stress from light to a following heavy syllable
+		tr->langopts.param[LOPT_IT_DOUBLING] = 1;
+		tr->langopts.long_stop = 130;
+
+		tr->langopts.numbers = NUM_DECIMAL_COMMA | NUM_ALLOW_SPACE | NUM_SWAP_TENS | NUM_OMIT_1_HUNDRED | NUM_DFRACTION_2 | NUM_ORDINAL_DOT;
+		SetLetterVowel(tr, 'y');
+		tr->langopts.spelling_stress = 1;
+		tr->langopts.intonation_group = 3; // less intonation, don't raise pitch at comma
+	}
+		break;
+		
 	case L('s', 'q'): // Albanian
 	{
 		static const short stress_lengths_sq[8] = { 150, 150,  180, 180,  0, 0,  300, 300 };
@@ -1468,7 +1489,7 @@ Translator *SelectTranslator(const char *name)
 			tr->letter_bits_offset = OFFSET_MALAYALAM;
 			tr->langopts.numbers = NUM_OMIT_1_THOUSAND | NUM_OMIT_1_HUNDRED;
 			tr->langopts.numbers2 = NUM2_OMIT_1_HUNDRED_ONLY;
-			tr->langopts.stress_rule = 13; // 1st syllable, unless 1st vowel is short and 2nd is long
+			tr->langopts.stress_rule = STRESSPOSN_1SL; // 1st syllable, unless 1st vowel is short and 2nd is long
 		} else if (name2 == L('k', 'n')) {
 			tr->letter_bits_offset = OFFSET_KANNADA;
 			tr->langopts.numbers = NUM_DEFAULT;
@@ -1490,7 +1511,7 @@ Translator *SelectTranslator(const char *name)
 		SetupTranslator(tr, stress_lengths_tr, stress_amps_tr);
 		tr->encoding = ESPEAKNG_ENCODING_ISO_8859_9;
 
-		tr->langopts.stress_rule = 7; // stress on the last syllable, before any explicitly unstressed syllable
+		tr->langopts.stress_rule = STRESSPOSN_1RU; // stress on the last syllable, before any explicitly unstressed syllable
 		tr->langopts.stress_flags = S_NO_AUTO_2; // no automatic secondary stress
 		tr->langopts.dotless_i = 1;
 		tr->langopts.param[LOPT_SUFFIX] = 1;
@@ -1569,7 +1590,7 @@ Translator *SelectTranslator(const char *name)
 		break;
 	case L3('c', 'm', 'n'): // no break, just go to 'zh' case
 	case L3('y', 'u', 'e'):
-	case L('z','h'):
+	case L('z','h'):	// zh is used for backwards compatibility. Prefer cmn or yue.
 	{
 		static const short stress_lengths_zh[8] = { 230, 150, 230, 230, 230, 0, 240, 250 }; // 1=tone5. end-of-sentence, 6=tone 1&4, 7=tone 2&3
 		static const unsigned char stress_amps_zh[] = { 22, 16, 22, 22, 22, 22, 22, 22 };
@@ -1629,7 +1650,7 @@ static void Translator_Russian(Translator *tr)
 	tr->langopts.param[LOPT_UNPRONOUNCABLE] = 0x432; // [v]  don't count this character at start of word
 	tr->langopts.param[LOPT_REGRESSIVE_VOICING] = 1;
 	tr->langopts.param[LOPT_REDUCE] = 2;
-	tr->langopts.stress_rule = 5;
+	tr->langopts.stress_rule = STRESSPOSN_SYLCOUNT;
 	tr->langopts.stress_flags = S_NO_AUTO_2;
 
 	tr->langopts.numbers = NUM_DECIMAL_COMMA | NUM_OMIT_1_HUNDRED;

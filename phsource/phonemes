@@ -602,7 +602,6 @@ endphoneme
 
 
 
-
 phoneme w
   liquid
   lengthmod 7
@@ -636,7 +635,6 @@ phoneme w
     FMT(w/w_)
   ENDIF
 endphoneme
-
 
 
 
@@ -1689,6 +1687,9 @@ include ph_arabic
 phonemetable ba base1
 include ph_bashkir
 
+phonemetable cmn base1
+include ph_cmn
+
 phonemetable cy base1
 include ph_welsh
 
@@ -1709,6 +1710,9 @@ include ph_farsi
 
 phonemetable fi base1
 include ph_finnish
+
+phonemetable smj base1
+include ph_lule_saami
 
 phonemetable fr base1
 include ph_french
@@ -1813,11 +1817,8 @@ include ph_vietnam
 phonemetable wo base1
 include ph_wolof
 
-phonemetable zh base1
-include ph_zh
-
-phonemetable zhy base1
-include ph_zh_yue
+phonemetable yue base1
+include ph_yue
 
 // *** Tables extending base2 ***
 
@@ -1918,6 +1919,12 @@ include ph_lojban
 
 phonemetable py eo
 include ph_pyash
+
+phonemetable qya la
+include ph_quenya
+
+phonemetable sjn la
+include ph_sindarin
 
 phonemetable es-la es
 include ph_spanish_la

@@ -11,9 +11,24 @@ The espeak-ng project is a fork of the espeak project.
 
 *  Add support for speechPlayer.
 *  Add more tests to check the various parts of espeak-ng.
-*  Various changes to clean up the codebase.
-*  Restructure "option brackets" language option to "brackets" and "bracketsAnnounced".
-*  Added voice variants
+*  Various changes to clean up the codebase (Juho Hiltunen)
+*  Remove support for l_length_mods language option
+*  Restructure "option brackets" language option to "brackets" and "bracketsAnnounced"
+*  Restructure "stressLength" and "stressAdd" language option
+*  New Language option: "lowercaseSentence" for ending a sentence if a period is followed by a lower case letter
+*  Add voice variants
+*  Rename zh to cmn (Mandarin)
+*  Rename zhy to yue (Cantonese)
+*  cmn (Mandarin) now assumes all latin characters all English text
+   Use cmn-latn-pinyin for interpreting latin characters as pinyin
+*  Update list of voice varants for Android application
+*  Add Chromium extension (guest271314)
+
+bug fixes:
+*  Fix reading malformed SSML (Christopher Brannon)
+*  Fix memory allocation (Christopher Brannon)
+*  Fix building and phoneme compilation (John Bowler)
+*  Fix build scripts for Android (Peter Vágner, Minas Tirith Citizen)
 
 documentation:
 * Add documentation about voice and language options.
@@ -21,13 +36,16 @@ documentation:
 
 updated languages:
 *  ba (Bashkir) -- boracasli98, Valdis Vitolins, Juho Hiltunen
-*  de (German) -- Karl Eick
+*  de (German) -- Karl Eick, Henry Krumb
 *  el (Modern Greek) -- Reece Dunn (support for variant Greek letter forms)
 *  en (English) -- Steven Presser, Ben Talagan
-*  ga (Gaelic (Irish)) Chen, Chien-ting 
+*  eu (Basque) -- agonzalezd
+*  fa (Farsi/Persian) -- Shadyar Khodayari
+*  ga (Gaelic (Irish)) Chen, Chien-ting
 *  grc (Ancient Greek) -- Reece Dunn (support for variant Greek letter forms)
 *  hak (Hakka Chinese) -- Juho Hiltunen
 *  haw (Hawaiian) -- Juho Hiltunen
+*  ka (Georgian) -- Juho Hiltunen
 *  kok (Konkani) -- Juho Hiltunen
 *  nb (Norwegian Bokmål) -- Juho Hiltunen
 *  nci (Classical Nahuatl) -- Juho Hiltunen
@@ -39,14 +57,14 @@ updated languages:
 *  lv (Latvian) -- Valdis Vitolins
 *  mi (Māori) -- boracasli98
 *  shn (Shan Tay Yai) -- ronaldaug
-*  tr (Turkish) -- boracasli98
+*  tr (Turkish) -- boracasli98, SeanTolstoyevski
 *  ur (Urdu) -- Ejaz Shah
 *  uz (Uzbek) -- boracasli98, Valdis Vitolins
 *  zh (Chinese) -- Silas S. Brown, Rongcui Dong, Icenowy Zheng, Juho Hiltunen
 
 new languages:
 *  chr (Cherokee) -- Michael Conrad
-*  cu (Chuvash) -- boracasli98, Valdis Vitolins
+*  cv (Chuvash) -- boracasli98, Valdis Vitolins
 *  haw (Hawaiian) -- Valdis Vitolins
 *  he (Hebrew) -- boracasli98, Valdis Vitolins
 *  io (Ido) -- José Miguel López, Valdis Vitolins
@@ -55,6 +73,9 @@ new languages:
 *  piqd (Klingon) -- Valdis Vitolins
 *  qu (Quechua) -- Valdis Vitolins
 *  qdb (Lang Belta) -- Da Def, Valdis Vitolins
+*  qya (Quenya) -- Lucas Werkmeister
+*  sjn (Sindarin) -- Lucas Werkmeister
+*  smj (Lule Saami) -- Katri Hiovain, Sebastien Le Maguer
 *  th (Thai) -- Valdis Vitolins
 *  tk (Turkmen) -- boracasli98, Valdis Vitolins
 *  ug (Uyghur) -- boracasli98, Valdis Vitolins

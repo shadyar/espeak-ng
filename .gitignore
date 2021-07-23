@@ -118,6 +118,7 @@ tests/*.check
 !tests/cmd_options.test
 !tests/windows-data.test
 !tests/windows-installer.test
+!tests/voices.test
 
 espeak-ng.pc
 
@@ -193,8 +194,8 @@ dictsource/*_extra
 dictsource/dict_log
 dictsource/dict_phonemes
 dictsource/ru_listx
-dictsource/zh_listx
-dictsource/zhy_listx
+dictsource/cmn_listx
+dictsource/yue_listx
 
 phsource/compile_prog_log
 phsource/compile_report

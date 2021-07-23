@@ -26,6 +26,7 @@
   - [phonemes](#phonemes)
   - [dictionary](#dictionary)
   - [dictrules](#dictrules)
+  - [lowercaseSentence](#lowercaseSentence)
   - [replace](#replace)
   - [stressRule](#stressrule)
   - [stressLength](#stresslength)
@@ -385,6 +386,16 @@ language dictionary. They apply to rules in the language's `*_rules`
 dictionary file and also its `*_list` exceptions list. See
 [Text to Phoneme Translation](dictionary.md#conditional-rules).
 
+### lowercaseSentence
+
+	lowercaseSentence <no arguments>
+
+By default, a sentence end is detected if a period `.` is followed by an uppercase letter.
+When lowercaseSentence is set, a period followed by a lowercase letter is also handled as end of sentence.
+
+Note that other conditions, such as abbreviations, might override this setting.
+
+
 ### replace
 
 	replace <flags> <phoneme> <replacement phoneme>
@@ -446,6 +457,9 @@ vowels in stressed and unstressed syllables.
 Eight integer parameters. These are added to the voice's corresponding
 `stressLength` values. They are used in the voice variant files in
 `espeak-ng-data/voices/!v` to give some variety. Negative values may be used.
+
+Note that setting `stressLength` after `stressAdd`  will overwrite this value.
+`stressLength` must be set before `stressAdd`.
 
 ### stressAmp
 

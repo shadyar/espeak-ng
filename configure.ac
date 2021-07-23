@@ -52,12 +52,12 @@ AC_ARG_WITH([extdict-ru],
     [AS_HELP_STRING([--with-extdict-ru], [use the extended Russian Dictionary file @<:@default=no@:>@])],
     [])
 
-AC_ARG_WITH([extdict-zh],
-    [AS_HELP_STRING([--with-extdict-zh], [use the extended Mandarin Chinese Dictionary file @<:@default=no@:>@])],
+AC_ARG_WITH([extdict-cmn],
+    [AS_HELP_STRING([--with-extdict-cmn], [use the extended Mandarin Chinese Dictionary file @<:@default=no@:>@])],
     [])
 
-AC_ARG_WITH([extdict-zhy],
-    [AS_HELP_STRING([--with-extdict-zhy], [use the extended Cantonese Chinese Dictionary file @<:@default=no@:>@])],
+AC_ARG_WITH([extdict-yue],
+    [AS_HELP_STRING([--with-extdict-yue], [use the extended Cantonese Chinese Dictionary file @<:@default=no@:>@])],
     [])
 
 AC_ARG_WITH([libfuzzer],
@@ -83,10 +83,10 @@ dnl ================================================================
 AC_MSG_CHECKING([for gradle])
 if test -e ${GRADLE} ; then
     AC_MSG_RESULT([${GRADLE}])
-    AM_CONDITIONAL(HAVE_GRADLE, [1])
+    AM_CONDITIONAL(HAVE_GRADLE, [test 1 = 1])
 else
     AC_MSG_RESULT([no])
-    AM_CONDITIONAL(HAVE_GRADLE, [0])
+    AM_CONDITIONAL(HAVE_GRADLE, [test 0 = 0])
 fi
 
 AC_SUBST(GRADLE)
@@ -281,21 +281,21 @@ else
 	have_extdict_ru=no
 fi
 
-if test "$with_extdict_zh" = "yes" ; then
-	have_extdict_zh=yes
+if test "$with_extdict_cmn" = "yes" ; then
+	have_extdict_cmn=yes
 else
-	have_extdict_zh=no
+	have_extdict_cmn=no
 fi
 
-if test "$with_extdict_zhy" = "yes" ; then
-	have_extdict_zhy=yes
+if test "$with_extdict_yue" = "yes" ; then
+	have_extdict_yue=yes
 else
-	have_extdict_zhy=no
+	have_extdict_yue=no
 fi
 
 AM_CONDITIONAL(HAVE_RU_EXTENDED_DICTIONARY,  [test x"$have_extdict_ru"  = xyes])
-AM_CONDITIONAL(HAVE_ZH_EXTENDED_DICTIONARY,  [test x"$have_extdict_zh"  = xyes])
-AM_CONDITIONAL(HAVE_ZHY_EXTENDED_DICTIONARY, [test x"$have_extdict_zhy" = xyes])
+AM_CONDITIONAL(HAVE_CMN_EXTENDED_DICTIONARY,  [test x"$have_extdict_cmn"  = xyes])
+AM_CONDITIONAL(HAVE_YUE_EXTENDED_DICTIONARY, [test x"$have_extdict_yue" = xyes])
 
 dnl ================================================================
 dnl Compiler warnings.
@@ -304,6 +304,7 @@ dnl Reference: https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
 dnl ================================================================
 
 AX_CHECK_COMPILE_FLAG([-Wimplicit],              [CFLAGS="-Wimplicit $CFLAGS"])
+AX_CHECK_COMPILE_FLAG([-Wint-conversion],        [CFLAGS="-Wint-conversion $CFLAGS"])
 AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],    [CFLAGS="-Wmissing-prototypes $CFLAGS"])
 AX_CHECK_COMPILE_FLAG([-Wreturn-type],           [CFLAGS="-Wreturn-type $CFLAGS"])
 AX_CHECK_COMPILE_FLAG([-Wuninitialized],         [CFLAGS="-Wuninitialized $CFLAGS"])
@@ -359,6 +360,6 @@ AC_MSG_NOTICE([
 
         Extended Dictionaries:
             Russian:                   ${have_extdict_ru}
-            Chinese (Mandarin):        ${have_extdict_zh}
-            Chinese (Cantonese):       ${have_extdict_zhy}
+            Chinese (Mandarin):        ${have_extdict_cmn}
+            Chinese (Cantonese):       ${have_extdict_yue}
 ])
