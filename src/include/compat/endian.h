@@ -18,11 +18,12 @@
 
 #ifndef ENDIAN_H_COMPAT_SHIM
 #define ENDIAN_H_COMPAT_SHIM
+#pragma once
 
-#if defined(HAVE_ENDIAN_H)
+#if __has_include_next(<endian.h>)
 #	pragma GCC system_header // Silence "warning: #include_next is a GCC extension"
 #	include_next <endian.h>
-#elif defined(HAVE_SYS_ENDIAN_H)
+#elif __has_include(<sys/endian.h>)
 #	include <sys/endian.h>
 #	if !defined(be16toh)
 #		define be16toh(x) betoh16(x)
@@ -66,7 +67,6 @@
 #	define __PDP_ENDIAN    PDP_ENDIAN
 #elif defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
 #	if BYTE_ORDER == LITTLE_ENDIAN
-#		include <winsock2.h>
 
 #		define htobe16(x) htons(x)
 #		define htole16(x) (x)
@@ -105,6 +105,23 @@
 #	define __BIG_ENDIAN    BIG_ENDIAN
 #	define __LITTLE_ENDIAN LITTLE_ENDIAN
 #	define __PDP_ENDIAN    PDP_ENDIAN
+#elif defined(__sun) && defined(__SVR4) /* Solaris */
+#   include <sys/byteorder.h>
+
+#   define htobe16(x) BE_16(x)
+#   define htole16(x) LE_16(x)
+#   define be16toh(x) BE_16(x)
+#   define le16toh(x) LE_16(x)
+
+#   define htobe32(x) BE_32(x)
+#   define htole32(x) LE_32(x)
+#   define be32toh(x) BE_32(x)
+#   define le32toh(x) LE_32(x)
+
+#   define htobe64(x) BE_64(x)
+#   define htole64(x) LE_64(x)
+#   define be64toh(x) BE_64(x)
+#   define le64toh(x) LE_64(x)
 #else
 #	error platform not supported
 #endif

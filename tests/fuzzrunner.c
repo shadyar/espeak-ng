@@ -16,8 +16,9 @@
  *             <http://www.gnu.org/licenses/>.
  */
 
+#undef NDEBUG
 #include "config.h"
-#include "speech.h"
+#include "common.h"
 
 #include <errno.h>
 #include <stdint.h>

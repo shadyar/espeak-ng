@@ -826,7 +826,6 @@ phoneme n^ // Spanish **ñ**
   ENDIF
 endphoneme
 
-
 phoneme N // si**ng** 
   vcd vel nas
   Vowelout f1=3 f2=2300 300 400  f3=-200 80  len=40 rms=20 brk
@@ -1675,9 +1674,6 @@ include ph_consonants
 phonemetable base2 base1
 include ph_base2
 
-phonemetable ak base1
-include ph_akan
-
 phonemetable am base1
 include ph_amhari
 
@@ -1710,6 +1706,9 @@ include ph_farsi
 
 phonemetable fi base1
 include ph_finnish
+
+phonemetable fo base1
+include ph_faroese
 
 phonemetable smj base1
 include ph_lule_saami
@@ -1761,6 +1760,9 @@ include ph_korean
 phonemetable la base1
 include ph_latin
 
+phonemetable lb base1
+include ph_luxembourgish
+
 phonemetable lt base1
 include ph_lithuanian
 
@@ -1805,22 +1807,28 @@ include ph_swedish
 phonemetable sw base1
 include ph_swahili
 
+phonemetable ti base1
+include ph_tigrinya
+
 phonemetable tn base1
 include ph_setswana
 
 phonemetable tt base1
 include ph_tatar
 
+phonemetable uk base1
+include ph_ukrainian
+
 phonemetable vi base1
 include ph_vietnam
-
-phonemetable wo base1
-include ph_wolof
 
 phonemetable yue base1
 include ph_yue
 
 // *** Tables extending base2 ***
+
+phonemetable be base2
+include ph_belarusian
 
 phonemetable chr base2
 include ph_cherokee
@@ -1849,6 +1857,9 @@ include ph_kurdish
 phonemetable mi base2
 include ph_maori
 
+phonemetable mto base2
+include ph_mixe_mto
+
 phonemetable nci base2
 include ph_nahuatl
 
@@ -1860,9 +1871,6 @@ include ph_klingon
 
 phonemetable ro base2
 include ph_romanian
-
-phonemetable rw base2
-include ph_kinyarwanda
 
 phonemetable tk base2
 include ph_turkmen
@@ -1883,6 +1891,9 @@ include ph_english_sc
 
 phonemetable en-us en
 include ph_english_us
+
+phonemetable en-us-nyc en
+include ph_english_us_nyc
 
 phonemetable en-wi en
 include ph_english_wi
@@ -1932,6 +1943,15 @@ include ph_spanish_la
 phonemetable ca es
 include ph_catalan
 
+phonemetable ca-nw ca
+include ph_catalan_nw
+
+phonemetable ca-va ca
+include ph_catalan_va
+
+phonemetable ca-ba ca
+include ph_catalan_ba
+
 phonemetable an es
 include ph_aragon
 
@@ -1940,9 +1960,6 @@ include ph_haitian
 
 phonemetable hi hi_base
 include ph_hindi
-
-phonemetable bo hi
-include ph_tibetan
 
 phonemetable gd base1 // hidden dependency, imports from hi
 include ph_s_gaelic
@@ -2019,8 +2036,6 @@ include ph_serbian
 phonemetable ru-lv ru
 include ph_russian_lv
 
-phonemetable uk ru
-
 phonemetable az tr
 include ph_azerbaijani
 
@@ -2049,3 +2064,8 @@ include ph_uzbek
 
 phonemetable qdb en
 include ph_langbelta
+
+phonemetable ms id
+
+phonemetable kaa kk
+include ph_karakalpak

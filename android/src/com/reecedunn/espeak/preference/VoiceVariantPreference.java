@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2022 Beka Gozalishvili
  * Copyright (C) 2013 Reece H. Dunn
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +21,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.DialogPreference;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -182,6 +185,7 @@ public class VoiceVariantPreference extends DialogPreference {
             new VariantData(R.string.variant_iven, "iven"),
             new VariantData(R.string.variant_iven2, "iven2"),
             new VariantData(R.string.variant_iven3, "iven3"),
+            new VariantData(R.string.variant_iven4, "iven4"),
             new VariantData(R.string.variant_jacky, "Jacky"),
             new VariantData(R.string.variant_john, "john"),
             new VariantData(R.string.variant_kaukovalta, "kaukovalta"),
@@ -219,6 +223,9 @@ public class VoiceVariantPreference extends DialogPreference {
             new VariantData(R.string.variant_robosoft8, "robosoft8"),
             new VariantData(R.string.variant_sandro, "sandro"),
             new VariantData(R.string.variant_shelby, "shelby"),
+            new VariantData(R.string.variant_steph, "steph"),
+            new VariantData(R.string.variant_steph2, "steph2"),
+            new VariantData(R.string.variant_steph3, "steph3"),
             new VariantData(R.string.variant_storm, "Storm"),
             new VariantData(R.string.variant_travis, "travis"),
             new VariantData(R.string.variant_tweaky, "Tweaky"),
@@ -324,6 +331,11 @@ public class VoiceVariantPreference extends DialogPreference {
             case DialogInterface.BUTTON_POSITIVE:
                 onDataChanged();
                 if (shouldCommit()) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                    {
+                        PreferenceManager preferenceManager = getPreferenceManager();
+                        preferenceManager.setStorageDeviceProtected ();
+                    }
                     SharedPreferences.Editor editor = getEditor();
                     if (editor != null) {
                         VoiceVariant variant = variants[mCategoryIndex][mVariantIndex].getVariant();

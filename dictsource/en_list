@@ -471,7 +471,7 @@ _0M3	b'Ili@n
 _0M4	tr'Ili@n
 _0M5    kw0dr'Ili@n
 _0M6    kwInt'Ili@n
-_0M7    sExt'Ili@n
+_0M7    sEkst'Ili@n
 _0M8    sEpt'Ili@n
 _0M9    0kt'Ili@n
 _0M10   n0n'Ili@n
@@ -513,6 +513,7 @@ ac	$abbrev
 acsi	$abbrev
 adf	$abbrev
 adhd	$abbrev
+ado $abbrev $allcaps
 adsl	$abbrev
 ae	$abbrev
 aes	$abbrev
@@ -560,6 +561,7 @@ echr	$abbrev
 edst	$abbrev
 edt	$abbrev
 eff	$abbrev
+efi	$abbrev
 eg	fO@Egz'aamp@L	$only
 eg	$abbrev $allcaps
 (e . g .) fO@Egz'aamp@L
@@ -577,6 +579,7 @@ ftaa	$abbrev
 fyi	$abbrev
 ghz	gIg@h3:ts	$only
 gnupg	g@'nu:pi:dZ'i:
+guid	g'u:Id $only
 hmm	h@m
 hiv	$abbrev
 (http ://)   eItSt2i:t2i:'pi:_
@@ -657,11 +660,13 @@ tbsp	teIb@Lspu:n
 th	T
 thu	T3:        // Thursday
 ?5 thu	TIR        // Thursday
+uia	$abbrev $only
 ucla	$abbrev
 ucl	$abbrev
 ucs	$abbrev
 udp	$abbrev
 ueb	$abbrev
+uefi	$abbrev
 ufo	$abbrev
 ui	$abbrev
 uk	$abbrev
@@ -684,9 +689,9 @@ uuid	$abbrev
 uv	$abbrev
 VI      $abbrev
 webrtc	w'EbA@t2i:s'i:
+winmd	w'In,Emd'i:
 wuxga	$abbrev
 wwii	dVb@Lju:dVb@Lju:t'u:
-xaml	$abbrev
 xl	$abbrev		// not roman 40
 xxx	$abbrev		// not roman 30
 xy	$abbrev
@@ -808,6 +813,7 @@ aha		A:h'A:
 ahem		@h'@m
 ahoy		a#hOI
 aidenn		eId@n
+aira 'aIr@ $only
 airbus		e@bVs
 airpower	'e@p,aU3
 aisle		aI@l
@@ -1042,6 +1048,7 @@ banal		beIn@L
 banana		$alt3
 ?3 banana       ba#nan@
 banged		baNgd
+banknote b'aNknoUt
 banquet		baNkwI2t
 barbiturate	bA@b'ItSU@r@t
 barometer	b@r0mI2t3
@@ -1058,6 +1065,7 @@ bass		$alt6 //beIs
 bassist		$alt6 //beIsIst
 baste		$alt6 //beIst
 bastion		basti@n
+bateau ba'toU
 batman		batman
 ?3 baton	$alt3
 battalion	$alt3
@@ -1068,6 +1076,7 @@ beatin		bi:t#In
 bedouin		bEdu:I2n
 beige		beIZ
 belisha		b@l'i:S@
+bellevue        b'Elvju: $only
 bellyaching	bElIeIkIN
 bely		bI#laI
 bereft		bI#rEft
@@ -1107,6 +1116,7 @@ bison		baIs@n
 bitable		baIt@b@L
 bitecha		baItS@
 ?!3 bitumen	bItSu:m@n
+bitwarden b'ItwO@d@n
 bizarre		bI#z'A@
 bizzare		bI#z'A@
 blanc		blA~nk
@@ -1126,6 +1136,7 @@ blurry		bl3:ri
 boardmember	$1
 bobsled		$alt1
 boing		bOIN
+boise	'bOIsi	$only
 bologna		b@loUni
 bolognese	b0l@n'eIz
 bombard		$2
@@ -1139,6 +1150,7 @@ boogey		boogie $text
 boomeranged	bu:m3aNd
 borealis	bo@rI'alIs
 bosun		boUs@n
+bothell         b'0T@L $only
 bourguignonne	bU@gIn'j0n
 boutique	bu:t'i:k
 boutonniere	bu:?n'i@3
@@ -1175,6 +1187,7 @@ bugaboo		bVg@bu:
 ?3 bulimia	bUl'Imi@
 bunion		bVnI2@n
 bureaucracy	bjU@'0kr@si
+burien 'bjU@ri@n $only
 bursar		b3:s3
 ?5 bursar	bVRs3
 bus		bVs
@@ -2291,6 +2304,7 @@ irises		aIrIsI#z
 iron		aI3n
 isochronous	aIs'0kr@n@s
 isosceles	aIs'0s@li:z
+issaquah 'Is@kwA:
 ?3 issuance	ISu:@ns
 invalidity	I2nv@lIdI#ti
 
@@ -2344,6 +2358,8 @@ kopje		k0pi
 koran		kO@r'A:n
 kosher		koUS3
 kowtow		kaUt2aU
+kubernetes ,ku:b3'nEti:z
+kusto 'ku:stoU $only
 
 la		,la           $only
 la		$abbrev $allcaps
@@ -2392,6 +2408,7 @@ lense		lEnz  // lenses
 leona		li:'oUn@
 leotard		$alt4
 leprechaun	lEpr@kO:n
+leschi 'lESaI
 lesion		li:Z@n
 (les misérables)	leImIzEr'A:bl@-
 lethal		li:T@L
@@ -2623,6 +2640,7 @@ mouthwater	m'aUTw,O:t3  // ing
 movies		mu:vIz
 mozilla		m@zIl@
 mujaheddin	mUdZ@hId'i:n
+mukilteo ,mVk@l'ti:oU
 ?3 multi	mVltaI
 multitude	$1
 multiplexer	$1
@@ -2640,6 +2658,7 @@ naif		naI'i:f
 naïve		naI'i:v
 naivete		naI'i:v@teI
 naked		neIkI2#d	// adjective
+nanaimo n@'naImoU $only
 narrative	nar@tIv
 ?3 narrator	nareIt3
 nasa		nasa#
@@ -3030,6 +3049,7 @@ psychosis	saIk'oUsIs
 psychotic	saIk'0tIk
 pud		pUd           // and pudding
 pueblo		pwEbloU
+puget pju:dZIt
 punative	pju:n@tIv
 puny		pju:ni
 purist		pjU@Ist
@@ -3037,6 +3057,7 @@ purport		$2
 purportedly	$2
 puree		pjU@reI
 ?3 puttin	pU?n
+puyallup pju:'al@p
 pyjama		p@dZA:m@
 pyrites		paIr'aIti:z
 pythagoras	paIT'ag@r@s
@@ -3254,6 +3275,7 @@ saliva		s@laIv@
 salmon		sam@n
 ?3 salon	$alt3
 saloon		$alt3
+sammamish s@'m'amIS
 san		,san $only
 sanguine	$alt2
 santoor		$alt3
@@ -3281,6 +3303,7 @@ scenario	s@nA@rioU
 scepter		sEpt3
 sceptre		sEpt3
 ?3 schematic	sk@matIk
+schengen 'SEN@n
 schist		SIst
 sci		saI
 sciatica	saI'atIk@
@@ -3345,9 +3368,11 @@ severest	s@vi@r@st
 shallot		$alt3
 shallow		SaloU
 shampoo		$2
+shaoni	SaI'oUni
 shareable	Se@@b@L
 sharpie		$alt2
 shazam		$alt3
+shea S'eI $only
 shebang		SI#baN
 sheepherder	$alt4
 shenanigan	SI#nanIg@n
@@ -3398,6 +3423,7 @@ slough		slVf	$verb
 slugabed	slVg@bEd
 snafu		snafu:
 snafus		snafu:z
+snohomish snoU'hoUmIS
 snooker		snu:k3
 sociopath	soUsI@paT
 sofa		soUf@
@@ -3522,6 +3548,7 @@ tabasco		$alt3
 tablet		tabl@t
 taboo		$2
 tabu		tabu:
+tacoma t@'koUm@
 (tae kwon do)	t'aIkw0nd'oU
 taffeta		tafI2t@
 (tai chi)	taI'tSi:
@@ -3837,6 +3864,7 @@ wholehearted	$2
 wicked		wIkI2#d	// adjective
 width		wItT
 wilderness	wIld3n@s
+willamette wI'lamIt $only
 wifi		waIfaI
 winding		waIndIN       // verb
 wind		waInd         $verb
@@ -4456,6 +4484,7 @@ Winnipeg	wInI#pEg
 Wisconsin	wI2sk'0nsI2n
 Wyoming		waI'oUmIN
 Xhosa		kO:s@
+yakima 'jakImA: $only
 Yemen		$alt2
 Ypres		i:pr@
 Yogyakarta	j0gj@k'A@t@
@@ -5678,5 +5707,3 @@ sterile		$alt2
 tensile		$alt2
 virile		$alt2
 ?3 volatile	v0la#t@L
-
-
